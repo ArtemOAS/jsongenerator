@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by Artem on 31.01.2016.
+ * Artem on 31.01.2016.
  */
 public class JsonBuilder {
-    private Collection<SimpleField> fields = new ArrayList<SimpleField>();
+    private Collection<SimpleField> fields = new ArrayList<>();
 
     public JsonBuilder with(SimpleField field) {
         this.fields.add(field);
