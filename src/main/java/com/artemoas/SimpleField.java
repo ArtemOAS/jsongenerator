@@ -1,6 +1,8 @@
 package com.artemoas;
 
-// TODO : add javadoc
+/**
+ * Represents field with string value
+ */
 public class SimpleField {
     private final String name;
     private final String value;

@@ -1,5 +1,7 @@
 package com.artemoas;
 
+import com.artemoas.utils.AssertionUtils;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,16 +16,17 @@ public class JsonBuilderTest {
 
     @Test
     public void testBuild() {
-        Assert.assertEquals("{\"name\":\"value\"}", new JsonBuilder().with(
-                new SimpleField("name", "value")
-        ).build());
+        String json = new JsonBuilder().with(new SimpleField("name", "value")).build();
+
+        AssertionUtils.assertJsonEquals("{\"name\":\"value\"}", json);
     }
     
     @Test
-    public void testCheckWorkWithCollection(){
-        Collection<SimpleField> fields = new ArrayList<>();
-        fields.add(new SimpleField("sdsd", "wewewe"));
-        Assert.assertEquals(new JsonBuilder().with(fields).build(),"{\"sdsd\":\"wewewe\"}");
+    public void testBuildWithCollectionOfFields() {
+        Collection<SimpleField> fields = Lists.newArrayList(new SimpleField("sdsd", "wewewe"));
+        String json = new JsonBuilder().with(fields).build();
+
+        AssertionUtils.assertJsonEquals("{\"sdsd\":\"wewewe\"}", json);
     }
 
 }
