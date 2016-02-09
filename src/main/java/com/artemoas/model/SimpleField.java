@@ -1,4 +1,4 @@
-package com.artemoas;
+package com.artemoas.model;
 
 /**
  * Represents field with string value
@@ -7,7 +7,9 @@ public class SimpleField {
     private final String name;
     private final String value;
 
-    // Add static method : SimpleField.of("asd","asd");
+    public static SimpleField of(String name, String value) {
+        return new SimpleField(name, value);
+    }
 
     public SimpleField(String name, String value) {
         this.name = name;
@@ -22,7 +24,4 @@ public class SimpleField {
         return value;
     }
 
-    public static SimpleField of(String name, String value){
-        return new SimpleField(name, value);
-    }
 }
