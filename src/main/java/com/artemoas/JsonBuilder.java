@@ -1,7 +1,8 @@
 package com.artemoas;
 
-// TODO : Change default template
-// TODO : add javadoc
+/**
+ *Building a collection of fields in json
+ */
 
 import java.util.ArrayList;
 import java.util.Collection;

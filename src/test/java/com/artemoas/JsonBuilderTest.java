@@ -20,13 +20,20 @@ public class JsonBuilderTest {
 
         AssertionUtils.assertJsonEquals("{\"name\":\"value\"}", json);
     }
-    
+
     @Test
     public void testBuildWithCollectionOfFields() {
         Collection<SimpleField> fields = Lists.newArrayList(new SimpleField("sdsd", "wewewe"));
         String json = new JsonBuilder().with(fields).build();
 
         AssertionUtils.assertJsonEquals("{\"sdsd\":\"wewewe\"}", json);
+    }
+
+    @Test
+    public void testDataSimpleField(){
+        String json = new JsonBuilder().with(SimpleField.of("firstName", "value")).build();
+
+        AssertionUtils.assertJsonEquals("{\"firstName\":\"value\"}", json);
     }
 
 }

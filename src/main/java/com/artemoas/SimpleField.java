@@ -21,4 +21,8 @@ public class SimpleField {
     public String getValue() {
         return value;
     }
+
+    public static SimpleField of(String name, String value){
+        return new SimpleField(name, value);
+    }
 }
