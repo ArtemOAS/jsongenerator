@@ -62,6 +62,9 @@
                         <totalLineRate>90</totalLineRate>
                         <totalBranchRate>90</totalBranchRate>
                     </check>
+                    <formats>
+                        <format>html</format>
+                    </formats>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,8 +1,6 @@
 package com.artemoas;
 
-import com.artemoas.model.FieldType;
-import com.artemoas.model.SimpleField;
-import com.artemoas.model.TypedField;
+import com.artemoas.model.type.*;
 import com.artemoas.utils.AssertionUtils;
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -16,31 +14,38 @@ public class JsonBuilderTest {
 
     @Test
     public void testBuild() {
-        String json = new JsonBuilder().with(new SimpleField("name", "value")).build();
+        String json = new JsonBuilder().with(new JsonString("name", "value")).buildObject();
 
         AssertionUtils.assertJsonEquals("{\"name\":\"value\"}", json);
     }
 
     @Test
     public void testBuildWithCollectionOfFields() {
-        Collection<SimpleField> fields = Lists.newArrayList(new SimpleField("sdsd", "wewewe"));
-        String json = new JsonBuilder().with(fields).build();
+        Collection<AbstractField> fields = Lists.<AbstractField> newArrayList(new JsonString("sdsd", "wewewe"));
+        String json = new JsonBuilder().with(fields).buildObject();
 
         AssertionUtils.assertJsonEquals("{\"sdsd\":\"wewewe\"}", json);
     }
 
     @Test
-    public void testDataSimpleField(){
-        String json = new JsonBuilder().with(SimpleField.of("firstName", "value")).build();
+    public void testBuildWithTypedField() {
+        String json = new JsonBuilder().with(new JsonNumber("age", "5")).buildObject();
 
-        AssertionUtils.assertJsonEquals("{\"firstName\":\"value\"}", json);
+        AssertionUtils.assertJsonEquals("{\"age\":5}", json);
     }
 
     @Test
-    public void testBuildWithTypedField() {
-        String json = new JsonBuilder().withPrintable(new TypedField("age", "5", FieldType.NUMBER)).build();
+    public void test() {
+        String json = new JsonObject(null, Lists.newArrayList(
+                new JsonString("name", "test"),
+                new JsonArray("roles", Lists.newArrayList(
+                        new JsonNumber(null, "1"),
+                        new JsonNumber(null, "2"),
+                        new JsonNumber(null, "3")
+                ))
+        )).print();
 
-        AssertionUtils.assertJsonEquals("{\"age\":5}", json);
+        AssertionUtils.assertJsonEquals("{\"name\":\"test\",\"roles\":[1,2,3]}", json);
     }
 
 }
