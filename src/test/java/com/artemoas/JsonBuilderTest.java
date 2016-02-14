@@ -48,4 +48,12 @@ public class JsonBuilderTest {
         AssertionUtils.assertJsonEquals("{\"name\":\"test\",\"roles\":[1,2,3]}", json);
     }
 
+    @Test
+    public void testJsonRandomString(){
+        JsonRandomString jsonRandomString = new JsonRandomString("field","");
+        String json = new JsonBuilder().with(jsonRandomString).buildObject();
+
+        AssertionUtils.assertJsonEquals("{\"field\":\""+jsonRandomString.randomString+"\"}", json);
+    }
+
 }
