@@ -3,6 +3,7 @@ package com.artemoas;
 import com.artemoas.model.type.*;
 import com.artemoas.utils.AssertionUtils;
 import com.google.common.collect.Lists;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -54,6 +55,9 @@ public class JsonBuilderTest {
         String json = new JsonBuilder().with(jsonRandomString).buildObject();
 
         AssertionUtils.assertJsonEquals("{\"field\":\""+jsonRandomString.randomString+"\"}", json);
+
+        // TODO : FIXME
+        Assert.assertEquals(jsonRandomString.print(), jsonRandomString.print());
     }
 
 }
