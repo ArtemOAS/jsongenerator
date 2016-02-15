@@ -52,7 +52,7 @@ public class JsonBuilderTest {
     @Test
     public void testJsonRandomString(){
         GenerationRule generationRule = new GenerationRule(10,95,122);
-        System.out.println(new JsonBuilder().with(new JsonRandomString("name").withRandomCharacteristics(generationRule)).buildObject());
+        System.out.println(new JsonBuilder().with(new JsonRandomString("name", "").withRandomCharacteristics(generationRule)).buildObject());
 //
 //        AssertionUtils.assertJsonEquals("{\"field\":\""+new JsonRandomString(new GenerationRule(10,95,122).GenerationRule())+"\"}", json);
 

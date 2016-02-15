@@ -10,12 +10,8 @@ public class JsonRandomString extends AbstractField {
         super(name, value);
     }
 
-    public JsonRandomString(String name) {
-        super(name);
-    }
-
     public JsonRandomString withRandomCharacteristics(GenerationRule generationRule){
-        return new JsonRandomString(generationRule.generationRule());
+        return new JsonRandomString(name, generationRule.generationRule());
     }
 
     // TODO : spell check, informational content, visibility, this method should mutate state or return value
