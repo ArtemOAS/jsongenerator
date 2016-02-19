@@ -1,7 +1,7 @@
 // TODO : Package .model.** should be re-worked somehow
 package com.artemoas.model.type;
 
-import java.util.Random;
+import com.artemoas.model.type.utills.StringGenerationRule;
 
 public class JsonRandomString extends AbstractField {
 
@@ -9,13 +9,13 @@ public class JsonRandomString extends AbstractField {
         super(name, value);
     }
 
-    public JsonRandomString withRandomCharacteristics(GenerationRule generationRule){
-        return new JsonRandomString(name, generationRule.generationRule());
+    public JsonRandomString withRandomCharacteristics(StringGenerationRule stringGenerationRule){
+        return new JsonRandomString(name, stringGenerationRule.generateRandomString());
     }
 
     @Override
     public String print() {
-        return String.format("\"%s\"", value);
+        return String.format("\"%s\"", getValue());
     }
 
 

@@ -1,6 +1,8 @@
 package com.artemoas;
 
 import com.artemoas.model.type.*;
+import com.artemoas.model.type.utills.StringGenerationRule;
+import com.artemoas.model.type.utills.TakeObject;
 import com.artemoas.utils.AssertionUtils;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
@@ -11,7 +13,7 @@ import java.util.Collection;
 /**
  * Chris on 2/8/16:10:29 PM.
  */
-public class JsonBuilderTest {
+public class JsonBuilderTest extends TakeObject {
 
     @Test
     public void testBuild() {
@@ -51,9 +53,12 @@ public class JsonBuilderTest {
 
     @Test
     public void testJsonRandomString(){
-        GenerationRule generationRule = new GenerationRule(10,95,122);
-        System.out.println(new JsonBuilder().with(new JsonRandomString("name", "").withRandomCharacteristics(generationRule)).buildObject());
-        Assert.assertEquals(generationRule.generationRule().length(), 10);
+        StringGenerationRule stringGenerationRule = new StringGenerationRule(10,95,122);
+        System.out.println(
+                new JsonBuilder().with(
+                        new JsonRandomString("name", "").withRandomCharacteristics(TakeObject.newInstance())).buildObject());
+
+        Assert.assertEquals(stringGenerationRule.generateRandomString().length(), 10);
 
         // TODO : FIXME
 //        Assert.assertEquals(jsonRandomString.print(), jsonRandomString.print());
